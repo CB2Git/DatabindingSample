@@ -416,7 +416,7 @@ public class BindConversion {
 我们使用的一个资源id，但是系统其实会帮我们自动弄成String
 
 
-> 参考链接：[官方文档](https://developer.android.com/topic/libraries/data-binding/)
+> 参考链接：[官方文档](https://developer.android.com/topic/libraries/data-binding/)、[掘金博客](https://juejin.im/post/578b944a128fe10063ad6c05)
 
 
 
