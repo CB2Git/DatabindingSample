@@ -4,7 +4,7 @@
 
 ```Java
 android {
-	dataBinding {
+    dataBinding {
     enabled = true
     }
 }
@@ -67,10 +67,10 @@ android:text="@{user.displayName != null ? user.displayName : user.lastName}"
 android:text="@{user.firstName instanceof String ? `1`:`2`}"
 ```
 
-或者
+或者外面使用单引号，里面使用双引号
 
 ```xml
-android:text=`@{user.firstName instanceof String ? "1":"2"}`
+android:text='@{user.firstName instanceof String ? "1":"2"}'
 ```
 
 + 在表达式中使用函数
