@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data></data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--BindingAdapter-->
+        <ImageView xmlns:bind="http://schemas.android.com/apk/res-auto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/ic_launcher_round"
+            bind:netImage="@{`https://upload-images.jianshu.io/upload_images/595349-6ffdbb24d4945fa4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700`}" />
+
+        <!--自动调用set-->
+        <TextView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:text='@{"3213"}' />
+    </LinearLayout>
+</layout>
