@@ -59,6 +59,13 @@
             android:onClick="@{handler::jump}"
             android:tag="sample6"
             android:text="BindingConversion" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{handler::jump}"
+            android:tag="sample7"
+            android:text="占位符与双向绑定" />
     </LinearLayout>
 
 </layout>

@@ -14,6 +14,7 @@ import cn.i27house.databindingsample.sample3.Sample3Activity;
 import cn.i27house.databindingsample.sample4.Sample4Activity;
 import cn.i27house.databindingsample.sample5.Sample5Activity;
 import cn.i27house.databindingsample.sample6.Sample6Activity;
+import cn.i27house.databindingsample.sample7.Sample7Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
             intent.setClass(this, Sample3Activity.class);
         } else if ("sample4".equals(tag)) {
             intent.setClass(this, Sample4Activity.class);
-        }else if ("sample5".equals(tag)) {
+        } else if ("sample5".equals(tag)) {
             intent.setClass(this, Sample5Activity.class);
-        }else if ("sample6".equals(tag)) {
+        } else if ("sample6".equals(tag)) {
             intent.setClass(this, Sample6Activity.class);
+        } else if ("sample7".equals(tag)) {
+            intent.setClass(this, Sample7Activity.class);
         }
         startActivity(intent);
     }

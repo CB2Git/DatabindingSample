@@ -207,9 +207,12 @@ public class User extends BaseObservable {
 }
 ```
 
-如上，首先让Model类继承BaseObservable ，然后在get方法上面使用 @Bindable注解进行绑定，然后在set方法中使用 notifyPropertyChanged(BR.firstName);去刷新View。或者使用notifyChange()刷新全部
+如上，首先让Model类继承BaseObservable ，然后**在get方法上面使用 @Bindable注解进行绑定**，然后在set方法中使用 notifyPropertyChanged(BR.firstName);去刷新View。或者使用notifyChange()刷新全部
 
 **如果BR类无法自动提示，那么在app\build\generated\source\apt\debug\包名\BR.java中可以找到生成的BR，然后写绝对路径就可以，如果没有生成，只能说明你写错了啊！！！**
+
+
+**BR的生成规则 是setXXX后面的那一串XXX，并且使用驼峰命名法**
 
 + ObservableField
 
@@ -217,11 +220,11 @@ public class User extends BaseObservable {
 
 还有特殊的ObservableList<T>或者ObservableMap<T>等。
 
-在使用ObservableField方式的时候有一个大坑，就是不能使用getXXX函数，需要将字段设置为public，不然不会刷新View。
+在使用ObservableField方式的时候有一个大坑，就是**不能使用getXXX函数**，需要将字段设置为public，不然不会刷新View。
 
 ```java
 /**
- * 不能有set  不然无效
+ * 不能有get  不然无效
  */
 public class User {
 
@@ -415,6 +418,92 @@ public class BindConversion {
 ```
 我们使用的一个资源id，但是系统其实会帮我们自动弄成String
 
+
+####  使用占位符
+
+有时候我们想使用占位符，我们同样可以这样
+
+```xml
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text='@{String.format("%s / %s",loginbean.userName,loginbean.userPwd)}' />
+```
+
+或者可以这样,直接使用xml中的
+
+```xml
+<string name="login_format">%1$s / %2$s</string>
+```
+
+```xml
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@{@string/login_format(loginbean.userName,loginbean.userPwd)}" />
+```
+
+
+#### 双向绑定
+
+通过上面所学的东西，我们可以在当bean对象变化的时候刷新到View上，如果我们想当View上发生变化的时候自动改变bean对象改怎么做呢？答案就是双向绑定。
+
+双向绑定的时候也是非常简单的。
+
+```xml
+<EditText
+    android:id="@+id/loginUserName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="请输入用户名"
+    android:text="@={loginbean.userName}" />
+```
+
+可以看到，我们仅仅使用了**@={}**而已，当然了，我们的**bean对象也必须能更新View**，就是上面数据绑定一节中介绍的内容。
+
+```java
+public class LoginBean extends BaseObservable {
+
+    private String mUserName;
+
+    private String mUserPwd;
+
+    public LoginBean() {
+    }
+
+    @Bindable
+    public String getUserName() {
+        return mUserName;
+    }
+
+    public void setUserName(String userName) {
+        mUserName = userName;
+        notifyPropertyChanged(BR.userName);
+        // notifyPropertyChanged(BR.);
+    }
+
+    @Bindable
+    public String getUserPwd() {
+        return mUserPwd;
+    }
+
+    public void setUserPwd(String userPwd) {
+        mUserPwd = userPwd;
+        //notifyChange();
+        notifyPropertyChanged(BR.userPwd);
+    }
+
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "mUserName='" + mUserName + '\'' +
+                ", mUserPwd='" + mUserPwd + '\'' +
+                '}';
+    }
+}
+```
+
+使用双向绑定的时候需要注意死循环，比如你监听一个EditText的数据改变，当长度过长的重新设置EditText的文字，这个时候又会回调你，所以需要进行判断，不然可能会死循环。
 
 > 参考链接：[官方文档](https://developer.android.com/topic/libraries/data-binding/)、[掘金博客](https://juejin.im/post/578b944a128fe10063ad6c05)
 

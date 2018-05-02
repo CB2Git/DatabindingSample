@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="loginbean"
+            type="cn.i27house.databindingsample.sample7.LoginBean" />
+
+        <variable
+            name="handler"
+            type="cn.i27house.databindingsample.sample7.Sample7Activity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/loginUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入用户名"
+            android:text="@={loginbean.userName}" />
+
+
+        <EditText
+            android:id="@+id/loginUserPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入密码"
+            android:text="@={loginbean.userPwd}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->handler.login(loginbean)}"
+            android:text="登录" />
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text='@{String.format("%s / %s",loginbean.userName,loginbean.userPwd)}' />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/login_format(loginbean.userName,loginbean.userPwd)}" />
+
+    </LinearLayout>
+
+</layout>
