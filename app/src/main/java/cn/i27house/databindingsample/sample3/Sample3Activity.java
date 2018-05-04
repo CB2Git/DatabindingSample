@@ -30,7 +30,7 @@ public class Sample3Activity extends AppCompatActivity {
     }
 
     public void change(User user) {
-        mUser.setFirstName("听说有人被点击了");
+        mUser.setFirstName("听说有人被点击了"+user);
     }
 
     public void onTextChanged(CharSequence s, int start, int before, int count) {

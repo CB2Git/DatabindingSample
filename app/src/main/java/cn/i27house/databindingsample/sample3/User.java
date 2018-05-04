@@ -23,4 +23,12 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName.set(lastName);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName=" + firstName.get() +
+                ", lastName=" + lastName.get() +
+                '}';
+    }
 }
