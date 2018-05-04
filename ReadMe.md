@@ -122,7 +122,7 @@ android:text="@{@string/nameFormat(firstName, lastName)}"
 ```
 
 
-#### Databing是空安全的，如果我们设置一些null值，则运行中不会显示
+**Databing是空安全的，如果我们设置一些null值，则运行中不会显示**
 
 #### 函数绑定
  + 绑定标准函数，比如onClick
@@ -149,6 +149,8 @@ android:onClick=“@{(view)->presenter.save(view, item)}”
 android:onClick=“@{()->presenter.save(item)}”
 android:onFocusChange=“@{(v, fcs)->presenter.refresh(item)}”
 ```
+
+**自定义View使用->形式貌似会出现问题**
 
 #### include标签的绑定
 
