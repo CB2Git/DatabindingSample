@@ -83,6 +83,45 @@ android:text="@{String.valueOf(8888)}"
 
 如果是非java.lang包下面的，我们需要在variable标签中进行定义才可以使用
 
+#### 表达式链
+
+比如下面的这些
+```xml
+<ImageView android:visibility=“@{isVisible ? View.VISIBLE : View.GONE}”/>
+<TextView android:visibility=“@{isVisible  ? View.VISIBLE : View.GONE}”/>
+<CheckBox android:visibility="@{isVisible  ? View.VISIBLE : View.GONE}"/>
+```
+
+我们如果使用表达式链可以写成如下形式，需要注意的是，**这里的id也要遵循驼峰命名法，比如如果id为photo_list，那么我们使用的时候是photoList**
+
+```xml
+<ImageView aandroid:id="@+id/image" android:visibility="@{isVisible ? View.VISIBLE:View.GONE}"/>
+<TextView android:visibility="@{image.visibility}"/>
+<CheckBox android:visibility="@{image.visibility}"/>
+```
+
+#### 隐式更新
+
+其实隐式更新是表达式链的另一种表现形式，就是不仅仅可以使用同一个属性。
+
+```xml
+<CheckBox android:id=”@+id/seeAds“/>
+<ImageView android:visibility=“@{seeAds.checked ? View.VISIBLE : View.GONE}”/>
+```
+
+#### 资源数据
+在xml中我们可以根据变量动态设置数值，比如这样
+
+```xml
+android:padding="@{large? @dimen/largePadding : @dimen/smallPadding}"
+```
+或者这样,占位符都tm用上了
+
+```xml
+android:text="@{@string/nameFormat(firstName, lastName)}"
+```
+
+
 #### Databing是空安全的，如果我们设置一些null值，则运行中不会显示
 
 #### 函数绑定
