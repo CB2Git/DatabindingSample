@@ -61,7 +61,7 @@ android:text="@{user.displayName != null ? user.displayName : user.lastName}"
 
 + 表达式中使用字符串
 
-在xml中，如果我们想使用字符串，需要使用``(反引号),如下
+~~在xml中，如果我们想使用字符串，需要使用``(反引号),如下.**这种形式不推荐，可能会报错**~~
 
 ```xml
 android:text="@{user.firstName instanceof String ? `1`:`2`}"
