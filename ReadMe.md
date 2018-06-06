@@ -43,6 +43,11 @@ android {
 ActivitySample1Binding mBinding =DataBindingUtil.setContentView(this,R.layout.activity_sample1);
 ```
 
+#### 快速生成Databinding对象
+
+有时候当我们修改了布局文件里面的id或者新创建了一个布局文件，Android Studio往往不会自动生成，或者当生成了，但是Android Studio提示一个红色，看着很不爽，解决方法除了重启Android Studio以外，还有运行Databinding的Gradle脚本 ,位置Android Studio右侧Gradle    Task->other-> dataBindingGenBaseClassesDebug
+
+
 #### 表达式
 
 + 可以使用大多数的一元、二元、三目运算符、还可以使用instanceof
